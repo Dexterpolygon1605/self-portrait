@@ -3,7 +3,7 @@ import React from "react";
 const About = ({onRouteChange}) => {
     return(
         <div className="w-70-ns w-80 ba center mt6 b--black-50">
-            <div className="f3-ns f5 fw5 tracked white mt3">
+            <div id="ok" className="f3-ns f5 fw5 tracked white mt3">
                 What's this website about?
             </div>
             <div className="mt3-ns mt2 f4-ns f6 fw3 white tl pa4-ns pa3">

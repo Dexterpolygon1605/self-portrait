@@ -1,6 +1,6 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 
-const Quiz = ({ onRouteChange }) => {
+const Quiz = ({ onRouteChange, answerCheck }) => {
 
     const database = [
         {
@@ -48,20 +48,19 @@ const Quiz = ({ onRouteChange }) => {
             let daLen = database[index].answers.length;
             let div = "<div>";
             for (let i = 0; i < daLen; i++) {
-                div += "<button id='btn' class='br3 b--transparent shadow-5 pa2 grow dim mr2 mb2 bg-gray white'>" + database[index].answers[i] + "</button>"
+                div += "<input type='radio' name='answer' id='check' class='mr1 ml3 mb2'>" + "<span class='white' id='choice'>" + database[index].answers[i] + "</span>" + "</input>"
             }
-            div +="</div>";
+            div += "</div>";
             document.getElementById('answers').innerHTML = div;
         } else {
             console.log('your done')
         }
     }
-    
 
     useEffect(() => {
         createQuiz();
     });
-   
+
 
     return (
         <div className="w-70-ns w-80 ba center mt6 b--black-50">
@@ -75,7 +74,7 @@ const Quiz = ({ onRouteChange }) => {
                 <div id="answers">
 
                 </div>
-                <button id="continue" type="button" className="b--transparent br3 bg-dark-gray grow dim white pa2 ml2-ns mt2-ns mt2 w-70 w-20-ns mb3" onClick={onButtonPressed}> Continue </button>
+                <button id="continue" type="button" className="b--transparent br3 bg-dark-gray grow dim white pa2 ml2-ns mt2-ns mt2 w-70 w-20-ns mb3" onClick={answerCheck}> Continue </button>
             </div>
         </div>
     )
