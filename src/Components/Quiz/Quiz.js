@@ -1,25 +1,81 @@
-import React from "react";
+import React, {useEffect} from "react";
 
-const Quiz = ({onRouteChange}) => {
+const Quiz = ({ onRouteChange }) => {
+
+    const database = [
+        {
+            question: 'Quanto tempo do seu dia-a-dia voce passa no computador?',
+            answers: [
+                '1h-2h',
+                '2h-4h',
+                '4h-6h',
+                'Praticamente o dia todo'
+            ]
+        },
+        {
+            question: 'Quantas horas de exercicio faz por semana?',
+            answers: [
+                '1:30h-3h',
+                '4h-6h',
+                '7h-8h',
+                'Mais'
+            ]
+        },
+        {
+            question: 'Quantas vezes socializa com os seus amigos?',
+            answers: [
+                'Quase nunca',
+                'As vezes',
+                'Uma vez por semana',
+                'Quase todos os dias',
+                'Todos os dias'
+            ]
+        }
+    ]
+
+    let index = 0;
+
+    const onButtonPressed = () => {
+        index++;
+        createQuiz();
+    }
+
+    const createQuiz = () => {
+        if (index < database.length) {
+            let span = "<span>";
+            let send = span += database[index].question + "</span>";
+            document.getElementById('question').innerHTML = send;
+            let daLen = database[index].answers.length;
+            let div = "<div>";
+            for (let i = 0; i < daLen; i++) {
+                div += "<button id='btn' class='br3 b--transparent shadow-5 pa2 grow dim mr2 mb2 bg-gray white'>" + database[index].answers[i] + "</button>"
+            }
+            div +="</div>";
+            document.getElementById('answers').innerHTML = div;
+        } else {
+            console.log('your done')
+        }
+    }
+    
+
+    useEffect(() => {
+        createQuiz();
+    });
+   
+
     return (
-        <div className="w-70-ns w-80 h5 ba center mt6 b--black-50">
+        <div className="w-70-ns w-80 ba center mt6 b--black-50">
             <div className="f3-ns f5 fw5 tracked white mt3">
-                What's this website about?
+                Character Quiz
             </div>
-            <div className="mt3-ns mt2 f4-ns f6 fw3 white tc pa4-ns pa3">
-                Quanto tempo do seu dia-a-dia você passa no seu computador?
+            <div id="question" className="mt3-ns mt2 f4-ns f6 fw3 white tc pa4-ns pa3">
+
             </div>
             <div>
-                <button className="br3 b--transparent shadow-5 pa2 grow dim mr2 bg-gray white">
-                    1h-4h
-                </button>
-                <button className="br3 b--transparent shadow-5 pa2 grow dim mr2 mt0-ns bg-gray white">
-                    5h-8h
-                </button>
-                <button className="br3 b--transparent shadow-5 pa2 grow dim mt0-ns mt2 bg-gray white">
-                    Praticamente o dia todo
-                </button>
-                <button className="b--transparent br3 bg-dark-gray grow dim white pa2 ml2-ns mt0-ns mt2 w-70 w-10-ns" onClick={() => onRouteChange('results')}> Continue </button>
+                <div id="answers">
+
+                </div>
+                <button id="continue" type="button" className="b--transparent br3 bg-dark-gray grow dim white pa2 ml2-ns mt2-ns mt2 w-70 w-20-ns mb3" onClick={onButtonPressed}> Continue </button>
             </div>
         </div>
     )

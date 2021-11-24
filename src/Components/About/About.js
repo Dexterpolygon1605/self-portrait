@@ -2,7 +2,7 @@ import React from "react";
 
 const About = ({onRouteChange}) => {
     return(
-        <div className="w-70-ns w-80 h5 ba center mt6 b--black-50">
+        <div className="w-70-ns w-80 ba center mt6 b--black-50">
             <div className="f3-ns f5 fw5 tracked white mt3">
                 What's this website about?
             </div>
@@ -13,7 +13,7 @@ const About = ({onRouteChange}) => {
             Learn how to love yourself!
             </div>
             <div>
-                <button onClick={() => onRouteChange('character')} className="br3 b--transparent shadow-5 pa2 grow dim">Create your Character!</button>
+                <button onClick={() => onRouteChange('character')} className="br3 b--transparent shadow-5 pa2 grow dim mb3">Create your Character!</button>
             </div>
         </div>
     )

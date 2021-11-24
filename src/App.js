@@ -20,7 +20,8 @@ const initialState = {
     weight: '',
     hobby: '',
     occupation: '',
-    community: ''
+    community: '',
+    quiz: []
   }
 }
 
@@ -29,6 +30,18 @@ class App extends Component {
     super();
     this.state = initialState
   }
+
+  getValues = () => {
+    this.setState({user: { name: document.getElementById('name').value }})
+    this.setState({user: { gender: document.getElementById('gender').value }})
+    this.setState({user: { age: document.getElementById('age').value }})
+    this.setState({user: { height: document.getElementById('height').value }})
+    this.setState({user: { weight: document.getElementById('weight').value }})
+    this.setState({user: { hobby: document.getElementById('hobby').value }})
+    this.setState({user: { occupation: document.getElementById('occupation').value }})
+    this.setState({user: { community: document.getElementById('community').value }})
+}
+
 
   onRouteChange = (route) => {
     if (route === 'homepage') {
@@ -52,7 +65,7 @@ class App extends Component {
         {route === 'homepage'
           ? <About onRouteChange={this.onRouteChange} />
           : (route === 'character'
-            ? <Character onRouteChange={this.onRouteChange} />
+            ? <Character getValues={this.getValues} onRouteChange={this.onRouteChange} />
             : (route === 'quiz'
               ? <Quiz onRouteChange={this.onRouteChange} />
               :(route === 'results'
