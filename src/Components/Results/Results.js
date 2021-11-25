@@ -1,67 +1,67 @@
 import React from "react";
-import { IoIosMan } from 'react-icons/io'
 
 const Results = ({ onRouteChange, getFieldsValue }) => {
-
-    getFieldsValue();
 
     return (
         <div className="mt6 ba w-80 center b--black-30">
             <div className="white tracked fw6 f4 mt3">
                 Create your Character!
             </div>
-            <div className="tl pa4">
-                <IoIosMan className="f2 ml1"/>
+            <div className="tc pa4">
+                <div id="gIcon">
+
+                </div>
                 <div>
-                    <label className="white">
+                    <label className="white underline">
                         Name:
                     </label>
-                    <span id="rname" className="white ml1"> Nelson Lopes </span>
+                    <span id="rName" className="white ml1"> </span>
                 </div>
                 <div className="mt2">
-                    <label className="white">
+                    <label className="white underline">
                         Gender:
                     </label>
-                    <span id="rGender" className="white ml1"> Male </span>
+                    <span id="rGender" className="white ml1"> </span>
                 </div>
                 <div className="mt2">
-                    <label className="white">
+                    <label className="white underline">
                         Age:
                     </label>
-                    <span id="rAge" className="white ml1"> 21 </span>
+                    <span id="rAge" className="white ml1"> </span>
                 </div>
                 <div className="mt2">
-                    <label className="white">
+                    <label className="white underline">
                         Height:
                     </label>
-                    <span id="rHeight" className="white ml1"> 1.80-2.00m</span>
+                    <span id="rHeight" className="white ml1">m</span>
                 </div>
                 <div className="mt2">
-                    <label className="white">
+                    <label className="white underline">
                         Weight:
                     </label>
-                    <span id="rWeight" className="white ml1"> 115Kg </span>
+                    <span id="rWeight" className="white ml1">  </span>
                 </div>
                 <div className="mt2">
-                    <label className="white">
+                    <label className="white underline">
                         Hobby:
                     </label>
-                    <span id="rHobby" className="white ml1"> Programar e jogar videojogos </span>
+                    <span id="rHobby" className="white ml1">  </span>
                 </div>
                 <div className="mt2">
-                    <label className="white">
+                    <label className="white underline">
                         Occupation:
                     </label>
-                    <span id="rOccupation" className="white ml1"> Unemployed </span>
+                    <span id="rOccupation" className="white ml1"> </span>
                 </div>
                 <div className="mt2">
-                    <label className="white">
+                    <label className="white underline">
                         Community:
                     </label>
-                    <span id="rCommunity" className="white ml1"> Geriante </span>
+                    <span id="rCommunity" className="white ml1">  </span>
                 </div>
                 <div className="mt2">
-                    <button type="button" onClick={() => onRouteChange('mainpage')} className="b--transparent br3 bg-dark-gray grow dim white pa2">Confirm</button>
+                    <button type="button" onClick={getFieldsValue} className="b--transparent br3 bg-dark-gray grow dim white pa2">Show Results</button>
+                    <button type="button" onClick={() => onRouteChange('mainpage')} className="b--transparent br3 bg-dark-gray grow dim white pa2 ml2">Confirm</button>
                     <button type="button" onClick={() => onRouteChange('character')} className="b--transparent br3 bg-dark-gray grow dim white pa2 ml2">Edit</button>
                 </div>
             </div>

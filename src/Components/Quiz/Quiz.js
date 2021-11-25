@@ -36,8 +36,21 @@ const Quiz = ({ onRouteChange, answerCheck }) => {
     let index = 0;
 
     const onButtonPressed = () => {
-        index++;
-        createQuiz();
+        let c = document.querySelectorAll('#check');
+        let array = [];
+        for(let i= 0; i < c.length; i++){
+            if(c[i].checked === true){
+                array.push(c[i].checked);
+            }
+        }
+        console.log(array);
+        if(array.includes(true)){
+            answerCheck();
+            index++;
+            createQuiz();
+        }else{
+            alert('You need choose a answer to continue!')
+        }
     }
 
     const createQuiz = () => {
@@ -52,8 +65,8 @@ const Quiz = ({ onRouteChange, answerCheck }) => {
             }
             div += "</div>";
             document.getElementById('answers').innerHTML = div;
-        } else {
-            console.log('your done')
+        }else{
+            onRouteChange('results');
         }
     }
 
@@ -74,7 +87,7 @@ const Quiz = ({ onRouteChange, answerCheck }) => {
                 <div id="answers">
 
                 </div>
-                <button id="continue" type="button" className="b--transparent br3 bg-dark-gray grow dim white pa2 ml2-ns mt2-ns mt2 w-70 w-20-ns mb3" onClick={answerCheck}> Continue </button>
+                <button id="continue" type="button" className="b--transparent br3 bg-dark-gray grow dim white pa2 ml2-ns mt2-ns mt2 w-70 w-20-ns mb3" onClick={onButtonPressed}> Continue </button>
             </div>
         </div>
     )

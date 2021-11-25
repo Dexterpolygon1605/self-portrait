@@ -20,9 +20,9 @@ const initialState = {
     weight: '',
     hobby: '',
     occupation: '',
-    community: '',
-    quiz: []
-  }
+    community: ''
+  },
+  quiz: []
 }
 
 class App extends Component {
@@ -34,6 +34,7 @@ class App extends Component {
   aStorage = [];
 
   //Character Functions
+  //Get the values
   getValues = () => {
     let formValue = {
       name: document.getElementById('name').value,
@@ -48,8 +49,15 @@ class App extends Component {
     this.setValues(formValue)
   }
 
+  //Send the values
   setValues = (data) => {
-    if (data.name !== '') {
+    let arrayResults = [];
+    for (let i = 0; i < Object.keys(data).length; i++) {
+      arrayResults.push(Object.values(data).includes(''));
+    }
+    if (arrayResults.includes(true)) {
+      alert('ok')
+    } else {
       this.setState(
         Object.assign(
           this.state.user, {
@@ -63,43 +71,41 @@ class App extends Component {
           community: data.community,
         }))
       this.onRouteChange('quiz')
-    } else {
-      alert('ok')
     }
 
   }
 
   //Quiz Functions
+  //Getting the answers from the quiz
   answerCheck = () => {
     let a = document.querySelectorAll('#check');
     let b = document.querySelectorAll('#choice');
-
-    if (this.aStorage.length < 3) {
-      for (let i = 0; i < a.length; i++) {
-        if (a[i].checked === true) {
-          this.aStorage.push(b[i].innerHTML);
-        }
+    for (let i = 0; i < a.length; i++) {
+      if (a[i].checked === true) {
+        this.aStorage.push(b[i].innerHTML);
       }
-    } else {
-      this.onRouteChange('results');
     }
     console.log(this.aStorage)
   }
 
+  //Sending the questions to the quiz array on this.state
   addAnswerValue = (res) => {
     this.setState({
-      user:
-      {
-        quiz: this.state.user.quiz = this.state.user.quiz.concat(res)
-      }
+        quiz: this.state.quiz = this.state.quiz.concat(res)
     });
-    console.log(this.state.user.quiz);
   }
 
   //Results Functions
+  //Add the values from the character form to the Results page
   getFieldsValue = () => {
-    let a = document.getElementById('rname');
-    console.log(a);
+    document.getElementById('rName').innerHTML = this.state.user.name;
+    document.getElementById('rGender').innerHTML = this.state.user.gender;
+    document.getElementById('rAge').innerHTML = this.state.user.age;
+    document.getElementById('rHeight').innerHTML = this.state.user.height + ' m';
+    document.getElementById('rWeight').innerHTML = this.state.user.weight + ' kg';
+    document.getElementById('rHobby').innerHTML = this.state.user.hobby;
+    document.getElementById('rOccupation').innerHTML = this.state.user.occupation;
+    document.getElementById('rCommunity').innerHTML = this.state.user.community;
   }
 
   //Route Functions
@@ -110,7 +116,7 @@ class App extends Component {
       this.setState({ done: true })
     } else if (route === 'results') {
       this.addAnswerValue(this.aStorage);
-      console.log(this.state.user.quiz)
+      console.log(this.state.quiz)
     } else if (route === 'quiz') {
       console.log(this.state.user);
     }
@@ -118,7 +124,7 @@ class App extends Component {
   }
 
   render() {
-    const { route, done } = this.state;
+    const { route, done, showResults } = this.state;
 
     return (
       <div className="App">
@@ -134,7 +140,7 @@ class App extends Component {
             : (route === 'quiz'
               ? <Quiz answerCheck={this.answerCheck} onRouteChange={this.onRouteChange} />
               : (route === 'results'
-                ? <Results getFieldsValue={this.getFieldsValue} onRouteChange={this.onRouteChange} />
+                ? <Results showResults={showResults} getFieldsValue={this.getFieldsValue} onRouteChange={this.onRouteChange} />
                 : (route === 'mainpage'
                   ? <Mainpage onRouteChange={this.onRouteChange} />
                   : (route === 'editProfile'
