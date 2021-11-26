@@ -56,7 +56,7 @@ class App extends Component {
       arrayResults.push(Object.values(data).includes(''));
     }
     if (arrayResults.includes(true)) {
-      alert('ok')
+      alert('You must fill all the inputs')
     } else {
       this.setState(
         Object.assign(
@@ -108,11 +108,13 @@ class App extends Component {
     document.getElementById('rCommunity').innerHTML = this.state.user.community;
   }
 
+
   //Route Functions
   onRouteChange = (route) => {
     if (route === 'homepage') {
       this.setState(initialState)
     } else if (route === 'mainpage') {
+      this.scoreMath();
       this.setState({ done: true })
     } else if (route === 'results') {
       this.addAnswerValue(this.aStorage);

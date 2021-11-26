@@ -33,7 +33,7 @@ const Results = ({ onRouteChange, getFieldsValue }) => {
                     <label className="white underline">
                         Height:
                     </label>
-                    <span id="rHeight" className="white ml1">m</span>
+                    <span id="rHeight" className="white ml1"></span>
                 </div>
                 <div className="mt2">
                     <label className="white underline">
